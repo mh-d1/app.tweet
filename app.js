@@ -65,3 +65,61 @@ window.onload = ()=>{
     document.getElementById('profileName').innerText = user;
   }
 }
+// app.js
+
+const users = [
+  { username: "admin", password: "123" },
+  { username: "user", password: "1234" }
+];
+
+function login(){
+  const userInput = document.getElementById('username').value;
+  const passInput = document.getElementById('password').value;
+  const errorMsg = document.getElementById('errorMsg');
+
+  const user = users.find(u => u.username === userInput);
+
+  if(!user){
+    errorMsg.textContent = "User tidak ditemukan";
+    return;
+  }
+
+  if(user.password !== passInput){
+    errorMsg.textContent = "Password salah";
+    return;
+  }
+
+  localStorage.setItem('user', user.username);
+  window.location.href = "home.html"; // pindah halaman
+}
+
+function logout(){
+  localStorage.removeItem('user');
+  window.location.href = "index.html";
+}
+
+function sendMessage(){
+  const input = document.getElementById('chatInput');
+  const box = document.getElementById('chatBox');
+
+  if(input.value){
+    const msg = document.createElement('div');
+    msg.textContent = input.value;
+    box.appendChild(msg);
+    input.value = '';
+  }
+}
+
+window.onload = ()=>{
+  const user = localStorage.getItem('user');
+
+  // protect halaman (harus login)
+  if(!user && !window.location.pathname.includes("index.html")){
+    window.location.href = "index.html";
+  }
+
+  const profile = document.getElementById('profileName');
+  if(profile){
+    profile.innerText = user;
+  }
+};
