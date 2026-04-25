@@ -3,7 +3,8 @@
 // Dummy database user
 const users = [
   { username: "admin", password: "123" },
-  { username: "user", password: "1234" }
+  { username: "user", password: "1234" },
+  { username: "hanafi", password:"25"},
 ];
 
 function login(){
