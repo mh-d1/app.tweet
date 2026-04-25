@@ -1,83 +1,124 @@
-<!-- index.html (LOGIN PAGE) -->
+<!-- ================= LOGIN PAGE ================= -->
 <!DOCTYPE html>
 <html lang="id">
 <head>
-  <meta charset="UTF-8">
-  <title>Login</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Login - X Style</title>
+<style>
+body{margin:0;font-family:Arial;background:#000;color:#fff;display:flex;justify-content:center;align-items:center;height:100vh}
+.box{background:#111;padding:30px;border-radius:10px;width:300px}
+input{width:100%;padding:10px;margin:5px 0;background:#222;border:none;color:#fff}
+button{width:100%;padding:10px;background:#1d9bf0;border:none;color:#fff;cursor:pointer}
+.error{color:red;font-size:12px}
+</style>
 </head>
 <body>
-  <h2>Login</h2>
-  <input id="username" placeholder="Username"><br><br>
-  <input id="password" type="password" placeholder="Password"><br><br>
-  <div id="errorMsg" style="color:red"></div><br>
-  <button onclick="login()">Login</button>
-
-  <script src="app.js"></script>
+<div class="box">
+<h2>Login</h2>
+<input id="username" placeholder="Username">
+<input id="password" type="password" placeholder="Password">
+<div id="errorMsg" class="error"></div>
+<button onclick="login()">Login</button>
+</div>
+<script src="app.js"></script>
 </body>
 </html>
 
 
-<!-- home.html -->
+<!-- ================= HOME PAGE ================= -->
 <!DOCTYPE html>
 <html>
-<head><title>Home</title></head>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Home</title>
+<style>
+body{margin:0;background:#000;color:#fff;font-family:Arial}
+.container{display:flex}
+.sidebar{width:250px;background:#111;height:100vh;padding:20px}
+.sidebar div{margin:10px 0;cursor:pointer}
+.feed{flex:1;padding:20px}
+.post{border-bottom:1px solid #222;padding:10px}
+.mobile-nav{display:none}
+@media(max-width:768px){
+.sidebar{display:none}
+.mobile-nav{display:flex;position:fixed;bottom:0;width:100%;background:#111;justify-content:space-around;padding:10px}
+}
+</style>
+</head>
 <body>
-  <h2>Home</h2>
-  <a href="search.html">Search</a> |
-  <a href="message.html">Message</a> |
-  <a href="profile.html">Akun</a> |
-  <a href="settings.html">Setting</a> |
-  <button onclick="logout()">Logout</button>
-
-  <p>Welcome ke Home</p>
-
-  <script src="app.js"></script>
+<div class="container">
+<div class="sidebar">
+<div onclick="go('home.html')">Home</div>
+<div onclick="go('search.html')">Search</div>
+<div onclick="go('message.html')">Message</div>
+<div onclick="go('profile.html')">Profile</div>
+<div onclick="go('settings.html')">Settings</div>
+<div onclick="logout()">Logout</div>
+</div>
+<div class="feed">
+<h2>Home Feed</h2>
+<textarea id="postInput" placeholder="Apa yang terjadi?"></textarea>
+<button onclick="createPost()">Post</button>
+<div id="posts"></div>
+</div>
+</div>
+<div class="mobile-nav">
+<div onclick="go('home.html')">🏠</div>
+<div onclick="go('search.html')">🔍</div>
+<div onclick="go('message.html')">💬</div>
+<div onclick="go('profile.html')">👤</div>
+</div>
+<script src="app.js"></script>
 </body>
 </html>
 
 
-<!-- message.html -->
+<!-- ================= MESSAGE PAGE ================= -->
 <!DOCTYPE html>
 <html>
-<head><title>Message</title></head>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Message</title>
+<style>
+body{margin:0;background:#000;color:#fff}
+.chat{height:80vh;overflow:auto;border:1px solid #222;padding:10px}
+input{width:80%;padding:10px;background:#111;color:#fff;border:none}
+button{padding:10px}
+</style>
+</head>
 <body>
-  <h2>Chat</h2>
-  <a href="home.html">Home</a>
-
-  <div id="chatBox" style="border:1px solid #000;height:200px;overflow:auto"></div>
-  <input id="chatInput">
-  <button onclick="sendMessage()">Kirim</button>
-
-  <script src="app.js"></script>
+<h2>Chat</h2>
+<div class="chat" id="chatBox"></div>
+<input id="chatInput">
+<button onclick="sendMessage()">Kirim</button>
+<script src="app.js"></script>
 </body>
 </html>
 
 
-<!-- profile.html -->
+<!-- ================= PROFILE PAGE ================= -->
 <!DOCTYPE html>
 <html>
 <head><title>Profile</title></head>
-<body>
-  <h2>Profil</h2>
-  <a href="home.html">Home</a>
-  <p>Username: <span id="profileName"></span></p>
-
-  <script src="app.js"></script>
+<body style="background:#000;color:#fff">
+<h2>Profile</h2>
+<p id="profileName"></p>
+<textarea id="bio" placeholder="Bio"></textarea>
+<button onclick="saveProfile()">Save</button>
+<script src="app.js"></script>
 </body>
 </html>
 
 
-<!-- settings.html -->
+<!-- ================= SETTINGS PAGE ================= -->
 <!DOCTYPE html>
 <html>
 <head><title>Settings</title></head>
-<body>
-  <h2>Settings</h2>
-  <a href="home.html">Home</a>
-
-  <p>Pengaturan user</p>
-
-  <script src="app.js"></script>
+<body style="background:#000;color:#fff">
+<h2>Settings</h2>
+<button onclick="toggleDark()">Toggle Dark Mode</button>
+<script src="app.js"></script>
 </body>
 </html>
 
